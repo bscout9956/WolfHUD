@@ -39,7 +39,7 @@ function HUDSuspicion:set_detection(text_item, detection)
 	detection = math.clamp(detection, 0, 1)
 	local color = math.lerp(Color(0, 0.71, 1), Color(0.99, 0.08, 0), detection)
 	text_item:set_color(color)
-	text_item:set_text(string.format("%d%%", detection*100))
+	text_item:set_text(string.format("%.2f%%", detection*100))
 end
 
 function HUDSuspicion:_animate_text(suspicion_panel, suspicion_text)
