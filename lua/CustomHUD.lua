@@ -1,5 +1,8 @@
 --TODO: Setting update for interaction, but probably not necessary as they are temporary anyway
 --TODO: Clean up interaction activation/deactivation animation, probably a lot of unnecessary rearranges going on
+previous_latency = 0
+jitter = 0
+
 if not WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then
 	return
 end
@@ -190,7 +193,10 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 			local net_session = managers.network:session()
 			local peer = net_session and net_session:peer(self:peer_id())
 			local latency = peer and Network:qos(peer:rpc()).ping or "n/a"
-
+			
+			jitter = math.abs(latency - previous_latency)
+			previous_latency = latency
+			
 			self:set_latency(latency)
 			self._next_latency_update_t = t + 1
 		end
@@ -1150,7 +1156,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 
 	PlayerInfoComponent.Latency = PlayerInfoComponent.Latency or class(PlayerInfoComponent.Base)
 	function PlayerInfoComponent.Latency:init(panel, owner, height, settings)
-		PlayerInfoComponent.Latency.super.init(self, panel, owner, "latency", height*2, height)
+		PlayerInfoComponent.Latency.super.init(self, panel, owner, "latency", height*4, height)
 
 		self._settings = settings
 
@@ -1202,7 +1208,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 
 	function PlayerInfoComponent.Latency:set_latency(value)
 		if type(value) == "number" then
-			self._text:set_text(string.format("%.0fms", value))
+			self._text:set_text(string.format("%.0fms %.0fms", value, jitter))
 			self._text:set_color(value < 75 and Color('C2FC97') or value < 150 and Color('CEA168') or Color('E24E4E'))
 		else
 			self._text:set_text(value)
