@@ -622,7 +622,7 @@ if RequiredScript == "lib/managers/hudmanager" then
 
 		if event == "add" then
 			if tweak_entry and not tweak_entry.is_vehicle and not tweak_entry.skip_exit_secure and (data.carry_id ~= "person" or managers.job:current_level_id() == "mad" and (data.bagged or data.unit:editor_id() ~= -1)) then
-				local angle = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING and 180 or WolfHUD:getSetting({"CustomWaypoints", "LOOT", "ANGLE"}, 25)
+				local angle = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING and 180 or WolfHUD:getSetting({"CustomWaypoints", "LOOT", "ANGLE"}, 45)
 				local name_id = data.carry_id and tweak_data.carry[data.carry_id] and tweak_data.carry[data.carry_id].name_id
 				local bag_name = name_id and managers.localization:to_upper_text(name_id)
 				local count = data.count or 1
@@ -631,16 +631,16 @@ if RequiredScript == "lib/managers/hudmanager" then
 						unit = data.unit,
 						offset = data.bagged and Vector3(0, 0, WolfHUD:getSetting({"CustomWaypoints", "LOOT", "BAGGED_OFFSET"}, 30)) or Vector3(0, 0, WolfHUD:getSetting({"CustomWaypoints", "LOOT", "OFFSET"}, 15)),
 						visible_through_walls = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING or data.bagged,
-						alpha = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING and 1 or 0.1,
+						alpha = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING and 1 or 0.3,
 						visible_angle = { max = angle },
-						visible_distance = { max = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING and 99999 or 2000 },
+						visible_distance = { max = HUDManager.CUSTOM_WAYPOINTS.DEBUGGING and 99999 or 30000 },
 						fade_angle = { start_angle = angle, end_angle = angle - 5, final_scale = 8 },
-						scale = 1.25,
+						scale = 1.5,
 						icon = {
 							type = "icon",
 							show = data.bagged and WolfHUD:getSetting({"CustomWaypoints", "LOOT", "ICON"}, true),
 							std_wp = "wp_bag",
-							alpha = 0.5,
+							alpha = 0.7,
 							on_minimap = true,
 						},
 						amount = {
