@@ -1451,6 +1451,13 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 		self._kills = self._kills + 1
 		self._special_kills = self._special_kills + (is_special and 1 or 0)
 		self._headshot_kills = self._headshot_kills + (headshot and 1 or 0)
+		-- Ugly code ahead --
+		if (self._headshot_kills == 0 and self._kills == 0) or ((self._headshot_kills / self._kills == math.huge) or (self._headshot_kills / self._kills == -math.huge)) then
+			self._headshot_percentage = 0
+		else			
+			self._headshot_percentage = (self._headshot_kills / self._kills) * 100
+		end
+		-- End of ugly code --
 		self:_update_text()
 	end
 
@@ -1458,12 +1465,13 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 		self._kills = 0
 		self._special_kills = 0
 		self._headshot_kills = 0
+		self._headshot_percentage = 0
 		self:_update_text()
 	end
 
 	function PlayerInfoComponent.KillCounter:_update_text()
 		if self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_PERCENTAGE then
-			self._text:set_text(string.format("%.0f %d/%d (%d)", self._kills / self._headshot_kills, self._kills, self._special_kills, self._headshot_kills))
+			self._text:set_text(string.format("%.0f%% %d/%d (%d)", self._headshot_percentage, self._kills, self._special_kills, self._headshot_kills))
 		elseif self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_KILLS then
 			self._text:set_text(string.format("%d/%d (%d)", self._kills / self._headshot_kills, self._kills, self._special_kills, self._headshot_kills))
 		elseif self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS then
