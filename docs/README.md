@@ -28,7 +28,7 @@ To make this mod work you will need to install __[SuperBLT](https://superblt.zni
 
 ## Installation (Direct Download)
 
-1. [Download WolfHUD from here](https://github.com/Kamikaze94/WolfHUD/archive/master.zip) or clone the master branch.  
+1. [Download WolfHUD from here](https://github.com/bscout9956/WolfHUD/archive/master.zip) or clone the master branch. (download for this fork)
 2. Open the downloaded archive, using WinRAR or 7Zip
 3. Extract the **WolfHUD-master** folder into your 'PAYDAY 2/mods' folder
 4. Start the game once. It will prompt you to update Federal Inventory.
@@ -56,7 +56,7 @@ The BLT log can be found at **PAYDAY 2/mods/logs/**.
 
 * [CustomHUD](https://bitbucket.org/pjal3urb/customhud/src) made by **Seven** modified by **me**
 * [HudPanelList](https://bitbucket.org/pjal3urb/hudlist/src/) made by **Seven**, modified by **me**
-* [KillCounter](https://bitbucket.org/pjal3urb/customhud/src) made by **Seven**, modified by **me**
+* [KillCounter](https://bitbucket.org/pjal3urb/customhud/src) made by **Seven**, modified by **me**, fork modifications by **bscout9956**
 * [Accuracy Plugin](https://bitbucket.org/pjal3urb/customhud/src) made by **Seven**, modified by **me**
 * [ToggleInteract](https://bitbucket.org/pjal3urb/toggleinteract/src) made by **Seven**, modified by **Iron Predator** and **me**
 * [DoubleTap Granades](https://bitbucket.org/pjal3urb/doubletapgrenades/src) made by **Seven**
@@ -92,7 +92,7 @@ The BLT log can be found at **PAYDAY 2/mods/logs/**.
 
 ## Localizations
 
-* English made by **me**
+* English made by **me**, needed modifications by **bscout9956**
 * German made by **me**
 * Russian made by **chrom[K]a**, **Magic3000** & **MEXAHOTABOP**
 * Korean made by **Я!zu**
@@ -102,7 +102,7 @@ The BLT log can be found at **PAYDAY 2/mods/logs/**.
 * Portuguese made by **Kazenin (Aldo Raine)**
 * Italian made by **LeecanIt**
 
-Big credit goes to all of you!  
+Big credit goes to all of you! 
 Without your awesome mods, I would have quitted this game a long time ago!  
 **If I forgot to mention you, I'm really sorry.  
 Please feel free to contact me, so I can credit you, for the awesome stuff you have made :)**  

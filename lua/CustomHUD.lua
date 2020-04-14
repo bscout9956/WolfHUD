@@ -100,6 +100,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 				SHOW_BOT_KILLS = false,	--Show the kill counter for criminal bots
 				SHOW_SPECIAL_KILLS = WolfHUD:getSetting({"CustomHUD", "PLAYER", "KILLCOUNTER", "SHOW_SPECIAL_KILLS"}, true),	--Separate counter for specials
 				SHOW_HEADSHOT_KILLS = WolfHUD:getSetting({"CustomHUD", "PLAYER", "KILLCOUNTER", "SHOW_HEADSHOT_KILLS"}, true),	--Separate counter, of how many kills were due to headshots
+				SHOW_HEADSHOT_PERCENTAGE = WolfHUD:getSetting({"CustomHUD", "PLAYER", "KILLCOUNTER", "SHOW_HEADSHOT_PERCENTAGE"}, true), --Percentage of kills that originated from a headshot
 				COLOR = WolfHUD:getColorSetting({"CustomHUD", "PLAYER", "KILLCOUNTER", "COLOR"}, "yellow")
 			},
 			SHOW_ACCURACY = WolfHUD:getSetting({"CustomHUD", "PLAYER", "SHOW_ACCURACY"}, true),	--Show accuracy information
@@ -164,6 +165,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 				SHOW_BOT_KILLS = WolfHUD:getSetting({"CustomHUD", "TEAMMATE", "KILLCOUNTER", "SHOW_BOT_KILLS"}, true),	--Show the kill counter for criminal bots
 				SHOW_SPECIAL_KILLS = WolfHUD:getSetting({"CustomHUD", "TEAMMATE", "KILLCOUNTER", "SHOW_SPECIAL_KILLS"}, true),	--Separate counter for specials
 				SHOW_HEADSHOT_KILLS = WolfHUD:getSetting({"CustomHUD", "TEAMMATE", "KILLCOUNTER", "SHOW_HEADSHOT_KILLS"}, true),	--Separate counter, of how many kills were due to headshots
+				SHOW_HEADSHOT_PERCENTAGE = WolfHUD:getSetting({"CustomHUD", "TEAMMATE", "KILLCOUNTER", "SHOW_HEADSHOT_PERCENTAGE"}, true), --Percentage of kills that originated from a headshot
 				COLOR = WolfHUD:getColorSetting({"CustomHUD", "TEAMMATE", "KILLCOUNTER", "COLOR"}, "yellow")
 			},
 			SHOW_ACCURACY = false,	--Show accuracy information
@@ -1460,8 +1462,10 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 	end
 
 	function PlayerInfoComponent.KillCounter:_update_text()
-		if self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_KILLS then
-			self._text:set_text(string.format("%d/%d (%d)", self._kills, self._special_kills, self._headshot_kills))
+		if self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_PERCENTAGE then
+			self._text:set_text(string.format("%.0f %d/%d (%d)", self._kills / self._headshot_kills, self._kills, self._special_kills, self._headshot_kills))
+		elseif self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS and self._settings.KILLCOUNTER.SHOW_HEADSHOT_KILLS then
+			self._text:set_text(string.format("%d/%d (%d)", self._kills / self._headshot_kills, self._kills, self._special_kills, self._headshot_kills))
 		elseif self._settings.KILLCOUNTER.SHOW_SPECIAL_KILLS then
 			self._text:set_text(string.format("%d/%d", self._kills, self._special_kills))
 		elseif self._settings.KILLCOUNTER.SHOW_HEADSHOT_KILLS then
