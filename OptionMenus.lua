@@ -1065,6 +1065,16 @@ if WolfHUD then
 								value = {"CustomHUD", "PLAYER", "KILLCOUNTER", "SHOW_HEADSHOT_KILLS"},
 							},
 							{
+								type = "toggle",
+								name_id = "wolfhud_killcounter_player_show_head_perc_title",
+								desc_id = "wolfhud_killcounter_player_show_head_perc_desc",
+								visible_reqs = {},
+								enabled_reqs = {
+									{ setting = {"CustomHUD", "PLAYER", "KILLCOUNTER", "HIDE"}, invert = true }
+								},
+								value = {"CustomHUD", "PLAYER", "KILLCOUNTER", "SHOW_HEADSHOT_PERCENTAGE"},
+							},
+							{
 								type = "multi_choice",
 								name_id = "wolfhud_killcounter_player_color_title",
 								desc_id = "wolfhud_killcounter_player_color_desc",
@@ -1119,6 +1129,16 @@ if WolfHUD then
 									{ setting = {"CustomHUD", "TEAMMATE", "KILLCOUNTER", "HIDE"}, invert = true }
 								},
 								value = {"CustomHUD", "TEAMMATE", "KILLCOUNTER", "SHOW_HEADSHOT_KILLS"},
+							},
+							{
+								type = "toggle",
+								name_id = "wolfhud_killcounter_team_show_head_perc_title",
+								desc_id = "wolfhud_killcounter_team_show_head_perc_desc",
+								visible_reqs = {},
+								enabled_reqs = {
+									{ setting = {"CustomHUD", "TEAMMATE", "KILLCOUNTER", "HIDE"}, invert = true }
+								},
+								value = {"CustomHUD", "TEAMMATE", "KILLCOUNTER", "SHOW_HEADSHOT_PERCENTAGE"},
 							},
 							{
 								type = "toggle",
